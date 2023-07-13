@@ -57,7 +57,7 @@ const uint8_t DISPLAY_DIGITS_SEGMENTS[] = {
 	1		// '_'
 };
 
-// Intensity percentages (10Ohm @ 5V).
+// Intensity percentages (Red LEDs @ 10Ohm @ 5V).
 const uint8_t DISPLAY_DIGITS_INTENSITIES[] = {
   0,		// 0	N/A
   78,		// 1	7.40
