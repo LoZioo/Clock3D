@@ -3,7 +3,8 @@
 #include <const.h>
 #include <proc.h>
 
-uint8_t num = 0;
+int num = 1234;
+uint8_t digits[DISPLAY_SEGMENTS];
 
 void setup(){
 	Serial.begin(115200);
@@ -16,11 +17,18 @@ void setup(){
 
 	display_clear();
 	delay(500);
+
+	float copy = num;
+	for(int i=DISPLAY_SEGMENTS-1; i>=0; i--){
+		copy /= 10;
+		digits[i] = (copy - floor(copy)) * 10;
+		copy = floor(copy);
+	}
 }
 
 void loop(){
-	for(int i=0; i<DISPLAY_DIGITS_LEN; i++){
-		display_write_number(i);
-		delay(500);
+	for(int i=0; i<DISPLAY_SEGMENTS; i++){
+		display_write_number(digits[i], i);
+		delay(8);
 	}
 }

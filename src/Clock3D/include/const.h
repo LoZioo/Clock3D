@@ -8,10 +8,16 @@
 #define LATCH_PIN		D4
 #define CLOCK_PIN		D5
 
+// #define DATA_PIN		4
+// #define PWM_PIN			5
+// #define LATCH_PIN		6
+// #define CLOCK_PIN		7
+
 #define PWM_MIN_VAL	255
 #define PWM_MAX_VAL	0
 
-#define DISPLAY_DIGITS_LEN 18
+#define DISPLAY_SEGMENTS		4
+#define DISPLAY_DIGITS_LEN	18
 
 // Binary encoded digits.
 const uint8_t DISPLAY_DIGITS_BITS[] = {

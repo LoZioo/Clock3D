@@ -10,14 +10,16 @@ void display_clear(){
 	digitalWrite(LATCH_PIN, LOW);
 }
 
-void display_write_number(uint8_t num){
+void display_write_number(uint8_t num, uint8_t segment){
 	num = constrain(num, 0, DISPLAY_DIGITS_LEN);
 
 	const uint8_t digit = DISPLAY_DIGITS_BITS[num];
 	const uint16_t intensity = map(DISPLAY_DIGITS_INTENSITIES[DISPLAY_DIGITS_SEGMENTS[num]], 0, 100, PWM_MIN_VAL, PWM_MAX_VAL);
+	segment = 1 << constrain(segment, 0, DISPLAY_SEGMENTS - 1);
 
 	analogWrite(PWM_PIN, PWM_MIN_VAL);
 	digitalWrite(LATCH_PIN, HIGH);
+	shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, segment);
 	shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, digit);
 	digitalWrite(LATCH_PIN, LOW);
 	analogWrite(PWM_PIN, intensity);
